@@ -1,0 +1,63 @@
+﻿
+.plans-wrap {
+    /*width: 1200px;*/
+    position: relative;
+    overflow: hidden;
+}
+
+.owl-stage-outer {
+    padding: 50px 0px;
+}
+
+.owl-item {
+    background: #0f0e0e;
+    text-align: center;
+    padding: 5px 5px 10px 10px;
+    position: relative;
+    border-radius: 4px;
+    border: 1px solid #ebebeb;
+}
+
+.owl-item active {
+    padding-right: 5px;
+}
+
+.owl-item::before {
+    border: 14px solid transparent;
+    left: 50%;
+    top: -1px;
+    z-index: 2;
+    margin-left: -14px;
+    border-top: 7px solid #f3f3f3;
+}
+
+.owl-nav {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+}
+
+.owl-prev,
+.owl-next {
+    position: absolute;
+    top: -10px;
+}
+
+.owl-prev i,
+.owl-next i {
+    font-size: 32px;
+    color: #FFC107;
+}
+
+.owl-prev {
+    left: 20px;
+}
+
+.owl-next {
+    right: 20px;
+}
+
+.toast.show {
+    position: absolute;
+}
