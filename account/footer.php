@@ -3,7 +3,7 @@
 </div>
 
 <!-- js -->
-<script src="../assets/js/jquery-3.4.1.js"></script>
+<script src="../asset/js/jquery.js"></script>
 <script src="../DBoard/vendors/scripts/core.js"></script>
 <script src="../DBoard/vendors/scripts/script.min.js"></script>
 <script src="../DBoard/vendors/scripts/process.js"></script>
@@ -208,7 +208,7 @@
                     alert(data);
                     btn.className = oldClass;
                     //btn.Title = "Ready";
-                    btn.hidden = true;
+                    btn.parentElement.parentElement.hidden = true;
                 } else {
                     alert("Unable to post data... Check your network!");
                 }

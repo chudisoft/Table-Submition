@@ -7555,3 +7555,7 @@ nav a:hover {
 .toast.show {
     position: absolute;
 }
+
+.left-side-bar open {
+    left: 0;
+}

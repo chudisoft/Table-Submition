@@ -1,9 +1,11 @@
 <?php
-    if(!isset($_SESSION["Username"])){
-        include('login_form.php'); return;
-    }
+if (!isset($_SESSION["Username"])) {
+    include('login_form.php');
+    return;
+}
 ?>
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 <h3>Number Pad</h3>
 <input type="text" id="numberInput" class="form-control mb-3" disabled>
 <div class="btn-group">
@@ -27,32 +29,18 @@
 </div>
 <button type="button" class="btn btn-primary mt-3" id="submitBtn"><i id='sendIcon' class="fa fa-paper-plane"></i> Submit</button>
 
-<div class="toast" id="myToast" role="alert" aria-live="assertive" aria-atomic="true" data-delay="3000">
-    <div class="toast-header">
-        <strong class="mr-auto">Message</strong>
-        <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close" id='closeBtn'>
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-    <div class="toast-body">
-        <p id="msgbox"></p>
-    </div>
-</div>
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 
-<!-- <script src="asset/js/jquery.js"></script> -->
 <script>
     $(document).ready(function() {
-        <?php 
-            $totaltables = 0;
-            $que12 = $conn->query("SELECT * FROM `sitesettings`");
-            while($r = mysqli_fetch_array($que12)){
-                $Id = $r['Id'];
-                $totaltables = $r['totaltables'];
-            }
+        <?php
+        $totaltables = 0;
+        $que12 = $conn->query("SELECT * FROM `sitesettings`");
+        while ($r = mysqli_fetch_array($que12)) {
+            $Id = $r['Id'];
+            $totaltables = $r['totaltables'];
+        }
         ?>
         const totalTables = <?php echo $totaltables ?>;
         $("#closeBtn").on("click", function() {
@@ -73,11 +61,19 @@
             //   console.log("Selected Number: " + selectedNumber);
 
             if (selectedNumber == null || selectedNumber == "") {
-                alert("Table number must be 1 and above.");
+                Toastify({
+                    text: "Table number must be 1 and above.",
+                    duration: 3000,
+                    close: true
+                }).showToast();
                 return;
             }
             if (selectedNumber < 1 || selectedNumber > totalTables) {
-                alert(`Table number must be between 1 and ${totalTables}.`);
+                Toastify({
+                    text: `Table number must be between 1 and ${totalTables}.`,
+                    duration: 3000,
+                    close: true
+                }).showToast();
                 return;
             }
             formData = {
@@ -90,21 +86,23 @@
                 function(data, status) {
                     //alert("Data: " + data + "\nStatus: " + status);
                     if (status == "success") {
-                        msgbox.innerHTML = data;
-                        $('#myToast').toggleClass('show');
+                        // msgbox.innerHTML = data;
+                        Toastify({
+                            text: data,
+                            duration: 3000,
+                            close: true
+                        }).showToast();
+
+                        // $('#myToast').toggleClass('show');
                         $("#numberInput").val('');
                     } else {
                         alert("Unable to post data... Check your network!");
                     }
-                    //document.getElementById("bodyContent").innerHTML = data;
-                    //alert(data);
                     $("#submitBtn").Title = "Submit";
                     sendIcon.className = 'fa fa-paper-plane';
                     $("#submitBtn").disabled = false;
-                });
-
-            // Here you can perform any additional actions, like submitting the form
-            // For demonstration purposes, we're just logging the selected number to the console
+                }
+            );
         });
     });
 </script>

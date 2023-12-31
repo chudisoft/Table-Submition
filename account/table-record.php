@@ -4,7 +4,7 @@
     {
         // include("notloggedin.php");
         // return;
-        echo '<p class="text-danger">Unauthorize request!</p>'; return;
+        echo 'Unauthorize request!'; return;
     }
     include('me.php');
 	$username = $_SESSION['Username'];
@@ -13,7 +13,7 @@
 		$selectedNumber = validate($conn, $_POST['selectedNumber']);
 
         if($username == '' || $selectedNumber == ''){
-            echo '<p class="text-danger">Invalid request!</p>'; return;
+            echo 'Invalid request!'; return;
         }else{
             if($selectedNumber >= 1){
                 $returnMessage = "";
@@ -29,10 +29,12 @@
                     die(__LINE__ . ' Invalid query: ' . mysqli_error($conn));
                     return;
                 }
-                echo "<p class='text-primary'>Data submited successfully!</p>";
+                // echo "<p class='text-primary'>Data submited successfully!</p>";
+                echo "Data submited successfully!";
                 return;
             }else {
-                    echo '<p class="text-danger">Table number must be up to 1!</p>'; 
+                    // echo '<p class="text-danger">Table number must be up to 1!</p>'; 
+                    echo 'Table number must be up to 1!'; 
                 return;
             }
         }

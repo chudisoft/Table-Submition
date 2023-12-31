@@ -1,31 +1,29 @@
+<!DOCTYPE html>
 <html>
-
 <head>
     <!-- Basic Page Info -->
     <meta charset="utf-8">
     <title>
         <?php
-            $p = "DashBoard";
-            $actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-            $link = "$_SERVER[REQUEST_URI]";
-            $start = strrpos($link, '/') + 1;
-            $end = strlen($link);
-            $p = substr($link, $start, $end - $start);
+        $p = "DashBoard";
+        $actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+        $link = "$_SERVER[REQUEST_URI]";
+        $start = strrpos($link, '/') + 1;
+        $end = strlen($link);
+        $p = substr($link, $start, $end - $start);
 
-            if(isset($_SESSION['Username']))
-            {
-                if(isset($_GET["Plan"])){
-                    $pPlan = $_GET["Plan"];
-                }
-                if(isset($_GET["Amount"])){
-                    $pAmount = $_GET["Amount"];
-                }
-                
+        if (isset($_SESSION['Username'])) {
+            if (isset($_GET["Plan"])) {
+                $pPlan = $_GET["Plan"];
             }
-            $p = strtoupper(str_replace(".php", "", $p));
-            echo $p;
-        ?> 
-    - <?php echo $SiteName ?></title>
+            if (isset($_GET["Amount"])) {
+                $pAmount = $_GET["Amount"];
+            }
+        }
+        $p = strtoupper(str_replace(".php", "", $p));
+        echo $p;
+        ?>
+        - <?php echo $SiteName ?></title>
 
     <!-- Site favicon -->
     <link rel="icon" type="image/png" href="../favicon.png">
@@ -43,48 +41,60 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <!-- <link href="..assets/css/main.css" rel="stylesheet" /> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link href="../asset/css/font-awesome.css" rel="stylesheet" />
-    <script src="../asset/js/fontawesome.js"></script>
     <!-- <link rel="stylesheet" type="text/css" href="../DBoard/src/plugins/datatables/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" type="text/css" href="../DBoard/src/plugins/datatables/css/responsive.bootstrap4.min.css"> -->
-    
+
     <style>
-		.goog-logo-link {
-            display:none !important;
-        } 
-                
-        .goog-te-gadget{
+        .goog-logo-link {
+            display: none !important;
+        }
+
+        .goog-te-gadget {
             color: transparent !important;
         }
-                
-        .goog-te-banner-frame{
+
+        .goog-te-banner-frame {
             visibility: hidden !important;
             margin-top: -200px !important;
         }
-        body{
-            top: 0 !important;                    
+
+        body {
+            top: 0 !important;
         }
-        .goog-te-gadget select{
+
+        .goog-te-gadget select {
             font-size: 19px;
             padding: 4px;
             border-radius: 6px;
             text-align: center;
-            background:#32B30E;
+            background: #32B30E;
             color: #fff;
             border: 1px solid #cc326e;
         }
+
         /* selected link */
         a:active {
-          color: white;
+            color: white;
         }
-	</style>
-        <script type="text/javascript">
-          function HideLoader() {
-              document.getElementById("loader").hidden = true;
-              //document.getElementById("plans").style = "row w3-animate-left";
-          }
-          window.onload = HideLoader;
-        </script>
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+   
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.min.js"></script>
+    <link href="../preloader.css" rel="stylesheet" type="text/css">
+    
+    <script src="../DBoard/src/scripts/setting.js"></script>
+    <script type="text/javascript">
+        function HideLoader() {
+            document.getElementById("loader").hidden = true;
+            //document.getElementById("plans").style = "row w3-animate-left";
+        }
+        window.onload = HideLoader;
+    </script>
     <script>
         window.dataLayer = window.dataLayer || [];
 
@@ -95,32 +105,19 @@
 
         gtag('config', 'UA-119386393-1');
     </script>
-    
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
-        <link href="dboard.css" rel="stylesheet" id="bootstrap-css">
-    
-        <!-- JavaScript Bundle with Popper -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.min.js"></script>
-    <link href="../preloader.css" rel="stylesheet" type="text/css">
-        
 </head>
 
 <body style="padding-top:unset">
     <div class="pre-loader bg-secondary" id="progress_div">
         <div class="preloader preloader-alt no-split" id="loader">
-          <span class="spinner spinner-alt">
-              <img hidden class="spinner-brand" src="images/tenor.gif" alt="">
-          </span>
+            <span class="spinner spinner-alt">
+            </span>
             <!-- <div class="loader-logo"><img src="../asset/img/logo.png" alt=""></div> -->
         </div>
     </div>
 
     <div class="text-white header" style="background-color:rgb(0, 0, 0)">
-        <a href="../"  class="d-block d-md-none">
+        <a href="../" class="d-block d-md-none">
             <img src="../asset/img/logo.png" alt="" class="light-logo" style="max-width:3em; margin-top: 0.5em; margin-left: 0.2em;">
         </a>
         <div class="header-right col-9 col-md-11">
@@ -140,11 +137,10 @@
                 <div class="dropdown">
                     <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">
                         <span class="user-icon fa fa-user">
-                            <img src="../DBoard/vendors/images/photo1.jpg" alt="" hidden>
                         </span>
                         <span class="text-white user-name">
                             <?php
-                                echo $_SESSION['Username'];
+                            echo $_SESSION['Username'];
                             ?>
                         </span>
                     </a>
@@ -158,15 +154,19 @@
                         </a>
                         <a class="dropdown-item" href="logout"><i class="dw dw-logout"></i> Log Out</a>
                     </div>
+                    
                 </div>
             </div>
+            <button class="navbar-toggler" type="button">
+                <span class="fa fa-bars text-white menu-icon"></span>
+            </button>
         </div>
     </div>
 
 
-<?php
+    <?php
     include("sidebar.php");
-?>
+    ?>
 
 
     <div class="main-container">

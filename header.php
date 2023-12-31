@@ -115,7 +115,7 @@
         <div class="mobile-navbar-wrapper">
             <!-- header begin -->
             <div class="header" id="header" style="background: #5e6375;">
-                <div class="text-center"> 
+                <div class="text-center" style="justify-content: end;display: flex;gap: 0.5em;padding: 0.5em;"> 
                     <button class="navbar-toggler" type="button" id="btnNav">
                         <span class="dag"></span>
                         <span class="dag2"></span>
