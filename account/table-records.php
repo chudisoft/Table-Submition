@@ -12,18 +12,19 @@ $search = "";
 $msg = "";
 $data = array();
 
-$qv = $conn->query("SELECT * FROM `table_records` WHERE `Username`='$username'");
+$qv = $conn->query("SELECT * FROM `ticket_records` WHERE `Username`='$username'");
 if ($_SESSION['Role'] == "Admin") {
-    $qv = $conn->query("SELECT * FROM `table_records`");
+    $qv = $conn->query("SELECT * FROM `ticket_records`");
 } else {
-    $qv = $conn->query("SELECT * FROM `table_records` WHERE `Username`='$username'");
+    $qv = $conn->query("SELECT * FROM `ticket_records` WHERE `Username`='$username'");
 }
 $tbl = "";
 if (mysqli_num_rows($qv) >= 1) {
     $i = 0;
     while ($r = mysqli_fetch_array($qv)) {
         $i++;
-        $Table = $r['Table'];
+        $Restraurant = $r['Restraurant'];
+        $Ticket = $r['Ticket'];
         $Date = $r['Date'];
         $Id = $r['Id'];
 
@@ -35,7 +36,8 @@ if (mysqli_num_rows($qv) >= 1) {
 
         $record = array(
             'Id' => $i,
-            'Table' => $Table,
+            'Restraurant' => $Restraurant,
+            'Ticket' => $Ticket,
             'Date/Time' => $Date
         );
                     
@@ -48,7 +50,8 @@ if (mysqli_num_rows($qv) >= 1) {
                 $tbl .= '<td class="text-center">' . $i . '</td>';
                 $tbl .= '<td class="text-center">' . $username . '</td>';
                 $tbl .= '<td class="text-center">' . $Date . '</td>';
-                $tbl .= '<td class="text-center">' . $Table . '</td>';
+                $tbl .= '<td class="text-center">' . $Ticket . '</td>';
+                $tbl .= '<td class="text-center">' . $Restraurant . '</td>';
                 if ($_SESSION['Role'] == "Admin") {
                     $tbl .= '<td class="text-center" style="font-size:large">' . $del . '</td>';
                 }
@@ -61,7 +64,8 @@ if (mysqli_num_rows($qv) >= 1) {
             $tbl .= '<td class="text-center">' . $i . '</td>';
             $tbl .= '<td class="text-center">' . $username . '</td>';
             $tbl .= '<td class="text-center">' . $Date . '</td>';
-            $tbl .= '<td class="text-center">' . $Table . '</td>';
+            $tbl .= '<td class="text-center">' . $Ticket. '</td>';
+            $tbl .= '<td class="text-center">' . $Restraurant. '</td>';
             if ($_SESSION['Role'] == "Admin") {
                 $tbl .= '<td class="text-center" style="font-size:large">' . $del . '</td>';
             }
@@ -158,7 +162,10 @@ $jsonResult = json_encode($data);
                         Date
                     </th>
                     <th class="text-center">
-                        Table
+                        Ticket
+                    </th>
+                    <th class="text-center">
+                        Restraurant
                     </th>
                     <th class="text-center">
                         Action

@@ -41,19 +41,29 @@
         }
     }elseif(isset($_GET['code']) && isset($_GET['action'])){   
         $code = validate($conn, $_GET['code']);
-        if ($code == "Administrator") {
-            echo "Error: Invalid action!"; return;
-        }
         $date = date('Y/m/d H:i:s');
         $code = $_GET['code'];
         $action = $_GET['action'];
         
+        if ($code == "Administrator" && $action != "Restraurant") {
+            echo "Error: Invalid action!"; return;
+        }
         $qv = $conn->query("SELECT * FROM `users` WHERE `Username`='$code'");
         $r = mysqli_fetch_array($qv);
         if(mysqli_num_rows($qv) <= 0){
             echo "User not found!"; return;
         }
         $approve = $r["Active"];
+        if($action=="Restraurant"){
+            $stmt = "Update users Set `Restraurant` = ".$_GET['value']." WHERE `Username`='$code'";
+            if ($conn->query($stmt) === TRUE) {
+            } else {
+                die(__LINE__ . ' Invalid query: ' . mysqli_error($conn));
+                return;
+            }
+
+            echo "User' Restraurant updated!"; return;
+		}
         if($action=="Approve"){
             $stmt = "Update users Set `Active` = 1 WHERE `Username`='$code'";
             if ($conn->query($stmt) === TRUE) {

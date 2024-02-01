@@ -62,7 +62,7 @@ if (!isset($_SESSION["Username"])) {
 
             if (selectedNumber == null || selectedNumber == "") {
                 Toastify({
-                    text: "Table number must be 1 and above.",
+                    text: "Ticket number must be 1 and above.",
                     duration: 3000,
                     close: true
                 }).showToast();
@@ -70,7 +70,7 @@ if (!isset($_SESSION["Username"])) {
             }
             if (selectedNumber < 1 || selectedNumber > totalTables) {
                 Toastify({
-                    text: `Table number must be between 1 and ${totalTables}.`,
+                    text: `Ticket number must be between 1 and ${totalTables}.`,
                     duration: 3000,
                     close: true
                 }).showToast();

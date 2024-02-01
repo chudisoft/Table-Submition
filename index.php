@@ -17,7 +17,7 @@ if (isset($_GET['ref'])) {
                 <div class="banner-content pb-2">
                     <h4>Welcome to <?php echo $SiteName ?></h4>
                     <h2 class="gold">Quickly track your order deliveries.</h2>
-                    <p>Select a table number and submit to register the time of order delivery.</p>
+                    <p>Select a ticket number and submit to register the time of order delivery.</p>
                     <a href="register" class="btn btn-primary border">Create New Account</a>
                 </div>
             </div>

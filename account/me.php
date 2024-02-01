@@ -9,6 +9,7 @@
         if(mysqli_num_rows($qv) >= 1){
             $active = $r['Active'];
             $Status = $r['Status'];
+            $Restraurant = $r['Restraurant'];
             $Role = $r['Role'];
             $Id = $r["Id"];
             $IdNumber = $r["Id"];

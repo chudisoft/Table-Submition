@@ -14,11 +14,11 @@ $Role = $_SESSION['Role'];
 $search = "";
 $msg = "";
 
-$qv = $conn->query("SELECT * FROM `table_records` WHERE `Username`='$username'");
+$qv = $conn->query("SELECT * FROM `ticket_records` WHERE `Username`='$username'");
 if ($_SESSION['Role'] == "Admin") {
-    $qv = $conn->query("SELECT * FROM `table_records`");
+    $qv = $conn->query("SELECT * FROM `ticket_records`");
 } else {
-    $qv = $conn->query("SELECT * FROM `table_records` WHERE `Username`='$username'");
+    $qv = $conn->query("SELECT * FROM `ticket_records` WHERE `Username`='$username'");
 }
 $tbl = "";
 if (mysqli_num_rows($qv) >= 1) {
@@ -46,11 +46,13 @@ if (mysqli_num_rows($qv) >= 1) {
 
     $excelData .= '<ss:Cell><ss:Data ss:Type="String">Id</ss:Data></ss:Cell>';
     $excelData .= '<ss:Cell><ss:Data ss:Type="String">Date</ss:Data></ss:Cell>';
-    $excelData .= '<ss:Cell><ss:Data ss:Type="String">Table</ss:Data></ss:Cell>';
+    $excelData .= '<ss:Cell><ss:Data ss:Type="String">Ticket</ss:Data></ss:Cell>';
+    $excelData .= '<ss:Cell><ss:Data ss:Type="String">Restraurant</ss:Data></ss:Cell>';
     $i = 0;
     while ($r = mysqli_fetch_array($qv)) {
         $i++;
-        $Table = $r['Table'];
+        $Restraurant = $r['Restraurant'];
+        $Ticket = $r['Ticket'];
         $Date = $r['Date'];
         $Id = $r['Id'];
 
@@ -58,7 +60,8 @@ if (mysqli_num_rows($qv) >= 1) {
         
         $excelData .= '<ss:Cell><ss:Data ss:Type="String">' . $i . '</ss:Data></ss:Cell>';
         $excelData .= '<ss:Cell><ss:Data ss:Type="String">' . $Date . '</ss:Data></ss:Cell>';
-        $excelData .= '<ss:Cell><ss:Data ss:Type="String">' . $Table . '</ss:Data></ss:Cell>';
+        $excelData .= '<ss:Cell><ss:Data ss:Type="String">' . $Ticket . '</ss:Data></ss:Cell>';
+        $excelData .= '<ss:Cell><ss:Data ss:Type="String">' . $Restraurant . '</ss:Data></ss:Cell>';
     }
         $excelData .= '</ss:Row>';
     // Close the XML tags

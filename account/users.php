@@ -30,6 +30,11 @@ if ($_SESSION['Role'] == "Admin") {
             //$code = $r['hash_p'];
             $Ref = $r['Ref'];
             $Id = $r['Username'];
+            $restraurant = $r['Restraurant'];
+
+            $textBox = '<input type="number" min=1 max=60 class="form-control-sm"'.
+                'title="Press enter to apply changes" value="'.
+                $restraurant.'" onchange="SubmitRestraurant(\'user.php?code='.$Id.'&action=Restraurant&value=\'+this.value, this)"/>';
 
             $sm = '<a href="email?Reciever=' . $email . '"
                     title="Email User" class="btn btn-primary fa fa-envelope">
@@ -68,20 +73,18 @@ if ($_SESSION['Role'] == "Admin") {
                     $tbl .= '<td class="text-center">' . $name . '</td>';
                     $tbl .= '<td class="text-center">' . $Id . '</td>';
                     $tbl .= '<td class="text-center">' . $email . '</td>';
-                    $tbl .= '<td class="text-center">' . $country . '</td>';
+                    $tbl .= '<td class="text-center">' . $phone . '</td>';
+                    // $tbl .= '<td class="text-center">' . $country . '</td>';
                     //$tbl .= '<td class="text-center">'.$password.'</td>';
                     // $tbl .= '<td class="text-center">'.$Ref.'</td>';
                     $tbl .= '<td class="text-center">' . $s . '</td>';
-                    $tbl .= '<td class="text-center">' . $phone . '</td>';
+                    $tbl .= '<td class="text-center">'.$textBox.'</td>';
                     if ($_SESSION['Role'] == "Admin") {
-                        $tbl .= '<td class="text-center" 
-                            style="font-size:large; border-right:unset; border-left:unset">' . $sm . '</td>';
-                        $tbl .= '<td class="text-center" 
-                            style="font-size:large; border-right:unset; border-left:unset">' . $pn . '</td>';
-                        $tbl .= '<td class="text-center" 
-                            style="font-size:large; border-right:unset; border-left:unset">' . $cn . '</td>';
-                        $tbl .= '<td class="text-center" 
-                            style="font-size:large; border-left:unset">' . $del . '</td>';
+                        $tbl .= '<td class="text-center">'.
+                            '<div class="d-flex gap-2 justify-content-center" >'.
+                                $sm . $pn . $cn . $del .
+                            '</div>'.
+                        '</td>';
                     }
 
                     $tbl .= '</tr>';
@@ -92,20 +95,18 @@ if ($_SESSION['Role'] == "Admin") {
                 $tbl .= '<td class="text-center">' . $name . '</td>';
                 $tbl .= '<td class="text-center">' . $Id . '</td>';
                 $tbl .= '<td class="text-center">' . $email . '</td>';
-                $tbl .= '<td class="text-center">' . $country . '</td>';
-                //$tbl .= '<td class="text-center">'.$password.'</td>';
-                $tbl .= '<td class="text-center">' . $Ref . '</td>';
-                $tbl .= '<td class="text-center">' . $s . '</td>';
                 $tbl .= '<td class="text-center">' . $phone . '</td>';
+                // $tbl .= '<td class="text-center">' . $country . '</td>';
+                //$tbl .= '<td class="text-center">'.$password.'</td>';
+                // $tbl .= '<td class="text-center">' . $Ref . '</td>';
+                $tbl .= '<td class="text-center">' . $s . '</td>';
+                $tbl .= '<td class="text-center">' . $textBox . '</td>';
                 if ($_SESSION['Role'] == "Admin") {
-                    $tbl .= '<td class="text-center" 
-                            style="font-size:large; border-right:unset; border-left:unset">' . $sm . '</td>';
-                    $tbl .= '<td class="text-center" 
-                            style="font-size:large; border-right:unset; border-left:unset">' . $pn . '</td>';
-                    $tbl .= '<td class="text-center" 
-                            style="font-size:large; border-right:unset; border-left:unset">' . $cn . '</td>';
-                    $tbl .= '<td class="text-center" 
-                            style="font-size:large; border-left:unset">' . $del . '</td>';
+                    $tbl .= '<td class="text-center">'.
+                        '<div class="d-flex gap-2 justify-content-center" >'.
+                            $sm . $pn . $cn . $del .
+                        '</div>'.
+                    '</td>';
                 }
 
                 $tbl .= '</tr>';
@@ -155,16 +156,13 @@ include("header.php");
                     Email
                 </th>
                 <th class="text-center">
-                    Country
+                    Phone
                 </th>
-                <!-- <th class="text-center">
-                    Referee
-                </th> -->
                 <th class="text-center">
                     Status
                 </th>
                 <th class="text-center">
-                    Phone
+                    Restraurant
                 </th>
                 <th class="text-center" colspan="5">
                     Action

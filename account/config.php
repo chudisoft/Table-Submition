@@ -9,10 +9,11 @@
             </a>';
     
     
+    // Database connection details
     $dbhost = "localhost";
-    $dbuser = "root";   //voucwztp_investuser
-    $dbpassword = "";   //InvestTemp
-    $dbname = "tablesubmitiondb";   //
+    $dbuser = "root";
+    $dbpassword = "";
+    $dbname = "ticketsubmitiondb";
 
     
     // CONNECTING TO THE DATABASE
@@ -27,7 +28,6 @@
     $headers .= "From: " . $SiteEmail . "\r\n".
         "Reply-To: " . $SiteEmail . "\r\n" .
         'X-Mailer: PHP/' . phpversion();
-    //$headers .= 'Cc: myboss@example.com' . "\r\n";
 
 	function validate($con, $vi){
 		if ($vi == null) {

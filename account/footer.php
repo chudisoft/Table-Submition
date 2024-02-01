@@ -215,6 +215,23 @@
                 //document.getElementById("bodyContent").innerHTML = data;
             });
     }
+
+    function SubmitRestraurant(url, btn) {
+        var oldClass = btn.className;
+        btn.disabled = true;
+        btn.className = "border border-warning";
+        $.post(url, [],
+            function(data, status) {
+                //alert("Data: " + data + "\nStatus: " + status);
+                if (status == "success") {
+                    alert(data);
+                    btn.className = oldClass;
+                } else {
+                    alert("Unable to post data... Check your network!");
+                }
+                //document.getElementById("bodyContent").innerHTML = data;
+            });
+    }
 </script>
 </body>
 

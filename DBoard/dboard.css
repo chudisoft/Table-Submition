@@ -61,3 +61,7 @@
 .toast.show {
     position: absolute;
 }
+
+.gap-2 {
+    gap: 0.5em;
+}

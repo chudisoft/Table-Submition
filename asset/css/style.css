@@ -7559,3 +7559,7 @@ nav a:hover {
 .left-side-bar open {
     left: 0;
 }
+
+.gap-2 {
+    gap: 0.5em;
+}
