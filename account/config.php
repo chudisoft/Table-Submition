@@ -9,7 +9,6 @@
             </a>';
     
     
-    // Database connection details
     $dbhost = "localhost";
     $dbuser = "root";
     $dbpassword = "";
